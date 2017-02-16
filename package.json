@@ -1,11 +1,14 @@
 {
   "name": "hapi-es7-async-handler",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./lib/index.js",
   "scripts": {
     "watch": "tsc --watch"
   },
-  "repository": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eseom/hapi-es7-async-handler"
+  },
   "license": "MIT",
   "dependencies": {
     "boom": "^4.2.0"

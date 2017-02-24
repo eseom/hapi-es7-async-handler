@@ -1,10 +1,10 @@
 {
   "name": "hapi-es7-async-handler",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "main": "./lib/index.js",
   "scripts": {
     "watch": "tsc --watch",
-    "publish": "tsc && npm publish"
+    "upload": "tsc && npm publish"
   },
   "repository": {
     "type": "git",

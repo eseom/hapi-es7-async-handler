@@ -10,7 +10,12 @@ export interface Options {
   handler?: any
 }
 
-let origRoute
+declare module 'hapi' {
+  export interface Server {
+    origRoute: any
+    __proto__: any
+  }
+}
 
 const register: IRegister = (server: Hapi.Server, pOptions, next: () => {}) => {
   const innerRoute = (options: Options) => {
@@ -29,12 +34,11 @@ const register: IRegister = (server: Hapi.Server, pOptions, next: () => {}) => {
         }
       }
     }
-    return origRoute.apply(server, [options])
+    return server.origRoute.apply(server, [options])
   }
 
-  origRoute = server.route
-
-  server.route = (options: Object) => {
+  server.__proto__.origRoute = server.__proto__.route
+  server.__proto__.route = (options: Object) => {
     if (Array.isArray(options)) {
       return options.map(option => innerRoute(option))
     }

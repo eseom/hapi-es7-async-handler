@@ -2,7 +2,7 @@ import * as Boom from 'boom'
 import * as Hapi from 'hapi'
 
 export interface IRegister {
-  (server: Hapi.Server, options: any, next: any): void
+  (plugin: any, options: any, next: any): void
   attributes?: any
 }
 
@@ -17,7 +17,9 @@ declare module 'hapi' {
   }
 }
 
-const register: IRegister = (server: Hapi.Server, pOptions, next: () => {}) => {
+const register: IRegister = (plugin, pOptions, next: () => {}) => {
+  const server = pOptions.server
+  const origRoute = server.route
   const innerRoute = (options: Options) => {
     if (options.handler) {
       if (options.handler instanceof Function) {
@@ -34,11 +36,10 @@ const register: IRegister = (server: Hapi.Server, pOptions, next: () => {}) => {
         }
       }
     }
-    return server.origRoute.apply(server, [options])
+    return origRoute.apply(server, [options])
   }
 
-  server.__proto__.origRoute = server.__proto__.route
-  server.__proto__.route = (options: Object) => {
+  server.route = (options: Object) => {
     if (Array.isArray(options)) {
       return options.map(option => innerRoute(option))
     }

@@ -11,9 +11,16 @@ You can use this plugin to add async handler function to your hapi projects.
 
 Example:
 ```js
-var plugins = [
+const server = new Hapi.server()
+
+const plugins = [
   ...
-  register: require('hapi-es7-async-handler'),
+  {
+    register: require('hapi-es7-async-handler'),
+    options: {
+      server,
+    },
+  },
   ...
 ];
 

@@ -17,9 +17,6 @@ const plugins = [
   ...
   {
     register: require('hapi-es7-async-handler'),
-    options: {
-      server,
-    },
   },
   ...
 ];

@@ -1,6 +1,6 @@
 {
   "name": "hapi-es7-async-handler",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "main": "./lib/index.js",
   "scripts": {
     "watch": "tsc --watch",
@@ -17,6 +17,6 @@
   "devDependencies": {
     "@types/hapi": "^16.0.0",
     "@types/node": "^7.0.5",
-    "typescript": "^2.1.6"
+    "typescript": "^2.3.1"
   }
 }

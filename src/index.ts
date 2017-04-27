@@ -13,13 +13,11 @@ export interface Options {
 declare module 'hapi' {
   export interface Server {
     origRoute: any
-    __proto__: any
   }
 }
 
-const register: IRegister = (plugin, pOptions, next: () => {}) => {
-  const server = pOptions.server
-  const origRoute = server.route
+const register: IRegister = (server, pOptions, next: () => {}) => {
+  const origRoute = server.root.route
   const innerRoute = (options: Options) => {
     if (options.handler) {
       if (options.handler instanceof Function) {
@@ -39,12 +37,16 @@ const register: IRegister = (plugin, pOptions, next: () => {}) => {
     return origRoute.apply(server, [options])
   }
 
-  server.route = (options: Object) => {
+  server.root.route = (options: Object) => {
     if (Array.isArray(options)) {
       return options.map(option => innerRoute(option))
     }
     return innerRoute(options)
   }
+  Object.keys(origRoute).forEach((k) => {
+    server.root.route[k] = origRoute[k]
+  })
+
   next()
 }
 

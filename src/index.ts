@@ -34,7 +34,7 @@ const register: IRegister = (server, pOptions, next: () => {}) => {
         }
       }
     }
-    return origRoute.apply(server, [options])
+    return origRoute.apply(server.root, [options])
   }
 
   server.root.route = (options: Object) => {

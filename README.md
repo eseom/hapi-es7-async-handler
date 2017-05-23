@@ -7,6 +7,10 @@
 
 You can use this plugin to add async handler function to your hapi projects.
 
+# requiements
+You need es7 supported javascript development environment or use Typescript
+
+
 # Usage
 
 Example:

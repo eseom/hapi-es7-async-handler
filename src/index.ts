@@ -22,10 +22,10 @@ const register: IRegister = (server, pOptions, next: () => {}) => {
     if (options.handler) {
       if (options.handler instanceof Function) {
         const t = options.handler
-        options.handler = (request, reply) => {
+        options.handler = (request: Hapi.Request, reply: Hapi.ReplyNoContinue) => {
           const p = t(request, reply)
           if (p && p.catch) {
-            p.catch((e) => {
+            p.catch((e: Error) => {
               console.error(e.stack)
               console.error(e.toString())
               reply(Boom.badGateway('server error'))

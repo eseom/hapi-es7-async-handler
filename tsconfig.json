@@ -1,12 +1,18 @@
 {
   "compilerOptions": {
+    "lib": [
+      "es2015"
+    ],
     "outDir": "lib",
-    "target": "es6",
+    "target": "es2015",
+    "declaration": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "typeRoots": ["./node_modules/@types", "./@types"]
   },
   "include": [
     "src/**/**.ts",
@@ -14,6 +20,7 @@
     "typings/index.d.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "lib"
   ]
 }

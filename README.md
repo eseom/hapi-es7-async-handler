@@ -1,3 +1,11 @@
+# NOTE
+
+Note: This library is no longer needed since hapi17. This feature has been included as standard since hapi 17. You can use this plugin up to version 16 hapijs.
+
+See the link below.
+  
+https://github.com/hapijs/hapi/issues/3429
+
 # hapi-es7-async-handler
 
 > async handler support for hapijs apps
